@@ -46,7 +46,7 @@ struct TodayViewModel{
     
     var getIconName: String { return iconName}
     
-    var getCityLabel: String { return city + "," + countryCode }
+    var getCityLabel: String { return city + ", " + countryCode }
     
     var getMainDescription: String { return "\(temperature)° | " + mainDescription }
     

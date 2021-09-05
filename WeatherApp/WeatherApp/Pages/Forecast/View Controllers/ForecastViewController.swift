@@ -16,7 +16,6 @@ class ForecastViewController: UIViewController{
         super.viewDidLoad()
         addCity(city: "Tbilisi")
         setUp()
-        
     }
     
     func setUp(){
@@ -58,6 +57,7 @@ class ForecastViewController: UIViewController{
                     self.tableView.isHidden = false
                     self.loader.stopAnimating()
                     self.loader.isHidden = true
+                    self.navigationItem.title = TodayViewController.getCurrentCity()
                     self.tableView.reloadData()
                     
                 

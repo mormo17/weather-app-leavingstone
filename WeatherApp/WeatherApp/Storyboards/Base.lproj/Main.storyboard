@@ -153,6 +153,19 @@
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArM-5N-x5x" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="y37-zq-DXI">
+                                        <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="y37-zq-DXI" firstAttribute="centerY" secondItem="ArM-5N-x5x" secondAttribute="centerY" id="rtI-3J-N4e"/>
+                                    <constraint firstItem="y37-zq-DXI" firstAttribute="centerX" secondItem="ArM-5N-x5x" secondAttribute="centerX" id="tpM-Db-yyc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Is-iV-mSx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -171,21 +184,27 @@
                             <constraint firstItem="8Is-iV-mSx" firstAttribute="bottom" secondItem="jvJ-Ps-Qkg" secondAttribute="bottom" constant="174.5" id="Uzf-1A-pnt"/>
                             <constraint firstItem="VrE-vV-zFu" firstAttribute="centerX" secondItem="H0V-cQ-Zuq" secondAttribute="centerX" id="VBt-Y7-dZB"/>
                             <constraint firstItem="oMU-Ib-g1z" firstAttribute="width" secondItem="H0V-cQ-Zuq" secondAttribute="width" multiplier="0.2" id="YDg-2R-HXU"/>
+                            <constraint firstItem="ArM-5N-x5x" firstAttribute="height" secondItem="H0V-cQ-Zuq" secondAttribute="height" id="YuZ-kE-0dr"/>
                             <constraint firstItem="0sf-wm-Ytl" firstAttribute="top" secondItem="jvJ-Ps-Qkg" secondAttribute="bottom" constant="10" id="dCW-kz-Y3y"/>
                             <constraint firstItem="0sf-wm-Ytl" firstAttribute="centerX" secondItem="H0V-cQ-Zuq" secondAttribute="centerX" id="etx-78-lQ4"/>
+                            <constraint firstItem="ArM-5N-x5x" firstAttribute="centerY" secondItem="H0V-cQ-Zuq" secondAttribute="centerY" id="fF4-Kl-cbl"/>
                             <constraint firstItem="AgH-Oh-lgy" firstAttribute="centerX" secondItem="H0V-cQ-Zuq" secondAttribute="centerX" id="gj1-rA-ah5"/>
+                            <constraint firstItem="ArM-5N-x5x" firstAttribute="centerX" secondItem="H0V-cQ-Zuq" secondAttribute="centerX" id="kTw-dH-Gmu"/>
                             <constraint firstItem="jvJ-Ps-Qkg" firstAttribute="centerX" secondItem="H0V-cQ-Zuq" secondAttribute="centerX" id="lqQ-K3-hEa"/>
                             <constraint firstItem="AgH-Oh-lgy" firstAttribute="top" secondItem="oMU-Ib-g1z" secondAttribute="bottom" constant="10" id="m7N-WR-Gtw"/>
+                            <constraint firstItem="ArM-5N-x5x" firstAttribute="width" secondItem="H0V-cQ-Zuq" secondAttribute="width" id="paV-bh-L9F"/>
                             <constraint firstItem="jvJ-Ps-Qkg" firstAttribute="top" secondItem="xVn-xi-w9h" secondAttribute="bottom" constant="10" id="suG-ae-Gny"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="PTH-Be-ToM"/>
+                    <navigationItem key="navigationItem" title="Today" id="PTH-Be-ToM" userLabel="Today"/>
                     <connections>
                         <outlet property="cityLabel" destination="AgH-Oh-lgy" id="WVc-wc-Xc9"/>
                         <outlet property="cloudinessLabel" destination="E9j-aF-tby" id="ygO-Gd-pAL"/>
                         <outlet property="humidityLabel" destination="ycN-Vh-xek" id="tuP-vK-hyy"/>
+                        <outlet property="loader" destination="y37-zq-DXI" id="e2K-eu-OEB"/>
                         <outlet property="mainDescription" destination="VrE-vV-zFu" id="gtP-Om-pBk"/>
                         <outlet property="pressureLabel" destination="ZW7-eU-onV" id="gtE-il-rmd"/>
+                        <outlet property="topView" destination="ArM-5N-x5x" id="aIw-KE-f61"/>
                         <outlet property="weatherIcon" destination="oMU-Ib-g1z" id="4OG-IY-gnA"/>
                         <outlet property="windDirectionLabel" destination="CKI-8q-Rsb" id="EiD-Ub-Kdz"/>
                         <outlet property="windSpeedLabel" destination="9C3-ec-NVJ" id="jSU-cU-gX0"/>
@@ -254,7 +273,7 @@
             <objects>
                 <navigationController id="SQO-cy-UoI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Today" image="sun.max" catalog="system" id="RQQ-1o-uMZ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sss-CL-U5F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sss-CL-U5F" userLabel="Today">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class TodayViewController: UIViewController {
+class TodayViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
@@ -17,12 +18,63 @@ class TodayViewController: UIViewController {
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
-    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     private var todayViewModel: TodayViewModel? = nil
+    private static var currentCity = ""
+    
+    var locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCity(city: "Tbilisi")
+        topView.isHidden = false
+        loader.startAnimating()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setUpLocation()
+    }
+    
+    func setUpLocation(){
+        if (!TodayViewController.currentCity.isEmpty){
+            print("uechveli")
+            return
+        }
+        print("aqac?")
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("AQ")
+        if !locations.isEmpty, TodayViewController.currentCity == "" {
+                let geoCoder = CLGeocoder()
+                geoCoder.reverseGeocodeLocation(locations.first!, completionHandler: { (placemarks, error) -> Void in
+                    let placemark = placemarks?[0]
+                    if let city = placemark?.locality{
+                        TodayViewController.currentCity = city
+                        print("-- Local City")
+//                        print(self.currentCity)
+                        print(city)
+                        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
+                        print("http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
+                            DispatchQueue.main.async {
+                                print("check\(TodayViewController.currentCity)")
+                                self.addCity(city: city.replacingOccurrences(of: " ", with: "%20"))
+                            }
+                        
+                        self.loader.stopAnimating()
+                    }
+                })
+                locationManager.stopUpdatingLocation()
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("error:", error)
+        }
     
     func addCity(city: String) {
         decodeCityWeatherInfo(city: city) { result in
@@ -33,6 +85,9 @@ class TodayViewController: UIViewController {
                     print(weatherData)
                     self.todayViewModel = TodayViewModelConstructor.construct(from: weatherData)
                     self.setUp()
+                    self.loader.stopAnimating()
+                    self.topView.isHidden = true
+                    
                 
                 case .failure(let error):
                         print(error)
@@ -42,9 +97,9 @@ class TodayViewController: UIViewController {
     }
     
     func decodeCityWeatherInfo(city: String, completion: @escaping (Result<WeatherData, Error>) -> ()) {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")!
-        print("url\(url)")
-        let request = URLRequest(url: url)
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
+//        print("url\(url)")
+        let request = URLRequest(url: url!)
         let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if let data = data{
                 let decoder = JSONDecoder()
@@ -71,7 +126,9 @@ class TodayViewController: UIViewController {
     }
     
     private func setUpCityLabel(){
-        cityLabel.text = todayViewModel?.getCityLabel
+        TodayViewController.currentCity = todayViewModel!.getCityLabel
+        cityLabel.text = TodayViewController.currentCity
+         
     }
     
     private func setUpMainDescription(){
@@ -97,6 +154,8 @@ class TodayViewController: UIViewController {
     private func setUpWindDirection(){
         windDirectionLabel.text = todayViewModel?.getWindDirection
     }
+    
+    public static func getCurrentCity() -> String { print("---\(currentCity)"); return currentCity }
     
     private func setUpIcon(iconName: String){
         let url = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
