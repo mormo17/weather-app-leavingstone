@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ForecastViewModel{
+struct ForecastViewModel{
     private let date: UInt64
     private let time: String
     private let iconName: String
@@ -36,9 +36,15 @@ class ForecastViewModel{
     }
     
     var getTime: String {
-        let timeIndex = time.index(time.endIndex, offsetBy: -8)
-        return String(time.suffix(from: timeIndex))
-        
+        let timeStartIndx = time.index(time.endIndex, offsetBy: -8)
+        let timeEndINdx = time.index(time.endIndex, offsetBy: -3)
+        let range = timeStartIndx..<timeEndINdx
+//        let timeIndex = time.index(time.endIndex, offsetBy: -8)
+        return String(time[range])
+    }
+    
+    var isNewDay: Bool {
+        return getTime == "00:00"
     }
     
     var getIconName: String { return iconName }

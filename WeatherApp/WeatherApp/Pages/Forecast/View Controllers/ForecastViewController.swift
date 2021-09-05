@@ -10,7 +10,8 @@ import UIKit
 class ForecastViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
-    var forecast = [ForecastViewModel]()
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    var forecast = [ForecastCellModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         addCity(city: "Tbilisi")
@@ -23,6 +24,8 @@ class ForecastViewController: UIViewController{
     }
     
     func initTableView(){
+        tableView.isHidden = true
+        loader.startAnimating()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -30,7 +33,7 @@ class ForecastViewController: UIViewController{
     }
     
     func registerTableView(){
-        tableView.register(ForecastHeader.nib(), forCellReuseIdentifier: ForecastHeader.identifier)
+        tableView.register(ForecastHeader.nib(), forHeaderFooterViewReuseIdentifier: ForecastHeader.identifier)
         tableView.register(ForecastDescription.nib(), forCellReuseIdentifier: ForecastDescription.identifier)
     }
     
@@ -43,10 +46,20 @@ class ForecastViewController: UIViewController{
                         print("SINGLE ITEM")
                         print(item)
                         let viewModel = ForecastViewModelConstructor.construct(from: item)
-                        self.forecast.append(viewModel)
+                        if self.forecast.last == nil || viewModel.isNewDay{
+                            let weekDay = viewModel.getWeekDay
+                            let headerModel = ForecastHeaderModel(weekDay: weekDay)
+                            let sectionToAdd = ForecastCellModel(headerModel: headerModel, rowModels: [])
+                            self.forecast.append(sectionToAdd)
+                        }
+                        
+                        self.forecast[self.forecast.count-1].rowModels.append(viewModel)
                     }
-                    
+                    self.tableView.isHidden = false
+                    self.loader.stopAnimating()
+                    self.loader.isHidden = true
                     self.tableView.reloadData()
+                    
                 
                 case .failure(let error):
                         print(error)
@@ -77,8 +90,17 @@ class ForecastViewController: UIViewController{
 }
 
 extension ForecastViewController: UITableViewDataSource, UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return forecast.count
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forecast[section].rowModels.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
     
@@ -88,29 +110,22 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        
-        if indexPath.row % 5 == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: ForecastHeader.identifier, for: indexPath)
-            if let tableViewCell = cell as? ForecastHeader{
-                if forecast.count > indexPath.row {
-                    print(forecast[indexPath.row].getDescription)
-                    let viewModel = forecast[indexPath.row]
-                    tableViewCell.configure(with: viewModel)
-                }
-            }
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: ForecastDescription.identifier, for: indexPath)
-            if let tableViewCell = cell as? ForecastDescription{
-                if forecast.count > indexPath.row {
-                    print(forecast[indexPath.row].getDescription)
-                    let viewModel = forecast[indexPath.row]
-                    tableViewCell.configure(with: viewModel)
-                }
-            }
+        cell = tableView.dequeueReusableCell(withIdentifier: ForecastDescription.identifier, for: indexPath)
+        if let tableViewCell = cell as? ForecastDescription{
+            let viewModel = forecast[indexPath.section].rowModels[indexPath.row]
+            tableViewCell.configure(with: viewModel)
         }
         
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ForecastHeader.identifier)
+        if let forecastHeader = header as? ForecastHeader{
+            forecastHeader.configure(with: forecast[section].headerModel)
+            return forecastHeader
+        }
+        return nil
     }
 }
 

@@ -7,28 +7,19 @@
 
 import UIKit
 
-class ForecastHeader: UITableViewCell {
+class ForecastHeader: UITableViewHeaderFooterView{
     static let identifier = "ForecastHeader"
     
     @IBOutlet weak var weekDay: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     static func nib() -> UINib{
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    public func configure(with model: ForecastViewModel){
-        setUpHeader(title: model.getWeekDay)
-    }
-    
-    private func setUpHeader(title: String){
-        weekDay.text = title
+    public func configure(with model: ForecastHeaderModel){
+        weekDay.text = model.getWeekDay
     }
 }
