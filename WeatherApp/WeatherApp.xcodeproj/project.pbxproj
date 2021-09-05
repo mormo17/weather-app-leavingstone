@@ -152,9 +152,8 @@
 		D1135B4D26E408E1003C33FD /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
-				D1135B4E26E409DB003C33FD /* Forecast Header */,
-				D1135B4F26E40C79003C33FD /* Forecast Description */,
-				D1135B5F26E41724003C33FD /* ForecastViewController.swift */,
+				D1F65C9626E4ED5E0032B142 /* Cell */,
+				D1F65C9526E4ED540032B142 /* View Controllers */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -194,6 +193,23 @@
 				D1135B1E26E400B9003C33FD /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D1F65C9526E4ED540032B142 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D1135B5F26E41724003C33FD /* ForecastViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D1F65C9626E4ED5E0032B142 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D1135B4E26E409DB003C33FD /* Forecast Header */,
+				D1135B4F26E40C79003C33FD /* Forecast Description */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
