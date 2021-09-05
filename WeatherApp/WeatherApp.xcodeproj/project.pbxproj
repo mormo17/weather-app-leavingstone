@@ -24,6 +24,9 @@
 		D1F65CCD26E531730032B142 /* ForecastCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CCC26E531730032B142 /* ForecastCellModel.swift */; };
 		D1F65CD526E53D9F0032B142 /* ForecastHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CD426E53D9F0032B142 /* ForecastHeader.swift */; };
 		D1F65CDA26E53E1B0032B142 /* ForecastHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65CD926E53E1B0032B142 /* ForecastHeader.xib */; };
+		D1F65CF126E5517D0032B142 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CF026E5517D0032B142 /* TodayViewController.swift */; };
+		D1F65CF726E5564D0032B142 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CF626E5564D0032B142 /* TodayViewModel.swift */; };
+		D1F65CFC26E55EE10032B142 /* TodayViewModelConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CFB26E55EE10032B142 /* TodayViewModelConstructor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		D1F65CCC26E531730032B142 /* ForecastCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCellModel.swift; sourceTree = "<group>"; };
 		D1F65CD426E53D9F0032B142 /* ForecastHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastHeader.swift; sourceTree = "<group>"; };
 		D1F65CD926E53E1B0032B142 /* ForecastHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastHeader.xib; sourceTree = "<group>"; };
+		D1F65CF026E5517D0032B142 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		D1F65CF626E5564D0032B142 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		D1F65CFB26E55EE10032B142 /* TodayViewModelConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelConstructor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,8 @@
 		D1135B4C26E408DB003C33FD /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				D1F65CF526E556230032B142 /* Models */,
+				D1F65CE626E5505A0032B142 /* View Controllers */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -249,6 +257,23 @@
 			children = (
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		D1F65CE626E5505A0032B142 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D1F65CF026E5517D0032B142 /* TodayViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D1F65CF526E556230032B142 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1F65CF626E5564D0032B142 /* TodayViewModel.swift */,
+				D1F65CFB26E55EE10032B142 /* TodayViewModelConstructor.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,8 +416,11 @@
 				D1F65CC526E530D20032B142 /* ForecastHeaderModel.swift in Sources */,
 				D1135B1B26E400B9003C33FD /* SceneDelegate.swift in Sources */,
 				D1F65CAA26E4FC8D0032B142 /* JSONStructs.swift in Sources */,
+				D1F65CF726E5564D0032B142 /* TodayViewModel.swift in Sources */,
 				D1F65CBB26E503500032B142 /* ForecastViewModelConstructor.swift in Sources */,
 				D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */,
+				D1F65CFC26E55EE10032B142 /* TodayViewModelConstructor.swift in Sources */,
+				D1F65CF126E5517D0032B142 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

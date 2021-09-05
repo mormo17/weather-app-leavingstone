@@ -25,10 +25,12 @@ struct Weather: Codable{
 struct Main: Codable{
     let humidity: Double
     let temp: Double
+    let pressure: Int
     
     init(){
         self.humidity = 0.0
         self.temp = 0.0
+        self.pressure = 0
     }
 }
 
