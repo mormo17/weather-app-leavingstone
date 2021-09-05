@@ -19,6 +19,9 @@
 		D1F65C8326E4DE860032B142 /* ForecastHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65C8126E4DE860032B142 /* ForecastHeader.xib */; };
 		D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CA026E4EF7F0032B142 /* ForecastDescription.swift */; };
 		D1F65CA326E4EF7F0032B142 /* ForecastDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65CA126E4EF7F0032B142 /* ForecastDescription.xib */; };
+		D1F65CAA26E4FC8D0032B142 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CA926E4FC8D0032B142 /* JSONStructs.swift */; };
+		D1F65CB326E503300032B142 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CB226E503300032B142 /* ForecastViewModel.swift */; };
+		D1F65CBB26E503500032B142 /* ForecastViewModelConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CBA26E503500032B142 /* ForecastViewModelConstructor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		D1F65C8126E4DE860032B142 /* ForecastHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastHeader.xib; sourceTree = "<group>"; };
 		D1F65CA026E4EF7F0032B142 /* ForecastDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDescription.swift; sourceTree = "<group>"; };
 		D1F65CA126E4EF7F0032B142 /* ForecastDescription.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastDescription.xib; sourceTree = "<group>"; };
+		D1F65CA926E4FC8D0032B142 /* JSONStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructs.swift; sourceTree = "<group>"; };
+		D1F65CB226E503300032B142 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
+		D1F65CBA26E503500032B142 /* ForecastViewModelConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModelConstructor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			children = (
 				D1135B2626E400BA003C33FD /* Info.plist */,
 				D1F65C8D26E4ECD80032B142 /* App */,
+				D1F65CA826E4FC660032B142 /* JSON Weather Data */,
 				D1135B4B26E408D2003C33FD /* Pages */,
 				D1F65C9426E4ED000032B142 /* Storyboards */,
 			);
@@ -154,6 +161,7 @@
 			children = (
 				D1F65C9626E4ED5E0032B142 /* Cell */,
 				D1F65C9526E4ED540032B142 /* View Controllers */,
+				D1F65CB126E5030D0032B142 /* Models */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -210,6 +218,23 @@
 				D1135B4F26E40C79003C33FD /* Forecast Description */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D1F65CA826E4FC660032B142 /* JSON Weather Data */ = {
+			isa = PBXGroup;
+			children = (
+				D1F65CA926E4FC8D0032B142 /* JSONStructs.swift */,
+			);
+			path = "JSON Weather Data";
+			sourceTree = "<group>";
+		};
+		D1F65CB126E5030D0032B142 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1F65CB226E503300032B142 /* ForecastViewModel.swift */,
+				D1F65CBA26E503500032B142 /* ForecastViewModelConstructor.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,7 +372,10 @@
 				D1135B6026E41724003C33FD /* ForecastViewController.swift in Sources */,
 				D1135B1926E400B9003C33FD /* AppDelegate.swift in Sources */,
 				D1F65C8226E4DE860032B142 /* ForecastHeader.swift in Sources */,
+				D1F65CB326E503300032B142 /* ForecastViewModel.swift in Sources */,
 				D1135B1B26E400B9003C33FD /* SceneDelegate.swift in Sources */,
+				D1F65CAA26E4FC8D0032B142 /* JSONStructs.swift in Sources */,
+				D1F65CBB26E503500032B142 /* ForecastViewModelConstructor.swift in Sources */,
 				D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

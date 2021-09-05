@@ -68,7 +68,7 @@
                 <outlet property="descriptionLabel" destination="cwe-Tc-eqq" id="cAz-eo-1Fs"/>
                 <outlet property="temperatureLabel" destination="3GR-7h-AyC" id="w9j-VY-Rs0"/>
                 <outlet property="timeLabel" destination="mqX-z6-vO5" id="CIr-mH-lGc"/>
-                <outlet property="weathcerIcon" destination="Xmc-BQ-nKR" id="O5e-7Q-tR7"/>
+                <outlet property="weatherIcon" destination="CEI-Wj-U7C" id="QFn-Qu-paA"/>
             </connections>
             <point key="canvasLocation" x="94" y="115"/>
         </tableViewCell>

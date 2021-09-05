@@ -9,7 +9,8 @@ import UIKit
 
 class ForecastDescription: UITableViewCell {
     static let identifier = "ForecastDescription"
-    @IBOutlet weak var weathcerIcon: NSLayoutConstraint!
+    
+    @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -26,6 +27,24 @@ class ForecastDescription: UITableViewCell {
     
     static func nib() -> UINib{
         return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    public func configure(with model: ForecastViewModel){
+        setUpTime(timeToSet: model.getTime)
+        setUpDescription(descriptionToSet: model.getDescription)
+        setUpTemperature(temperatureToSet: model.getTemperature)
+    }
+    
+    private func setUpTime(timeToSet: String){
+        timeLabel.text = timeToSet
+    }
+    
+    private func setUpDescription(descriptionToSet: String){
+        descriptionLabel.text = descriptionToSet
+    }
+    
+    private func setUpTemperature(temperatureToSet: String){
+        temperatureLabel.text = temperatureToSet
     }
     
 }
