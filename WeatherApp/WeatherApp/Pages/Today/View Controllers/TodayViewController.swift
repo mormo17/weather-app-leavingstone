@@ -60,6 +60,7 @@ class TodayViewController: UIViewController {
     }
     
     private func setUp(){
+        setUpIcon(iconName: todayViewModel?.getIconName ?? "sun")
         setUpCityLabel()
         setUpMainDescription()
         setUpCloudiness()
@@ -96,4 +97,27 @@ class TodayViewController: UIViewController {
     private func setUpWindDirection(){
         windDirectionLabel.text = todayViewModel?.getWindDirection
     }
+    
+    private func setUpIcon(iconName: String){
+        let url = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        weatherIcon.image = UIImage(data: data!)
+    }
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from url: URL) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            // always update the UI from the main thread
+            DispatchQueue.main.async() { [weak self] in
+                self?.weatherIcon.image = UIImage(data: data)
+            }
+        }
+    }
+    
 }

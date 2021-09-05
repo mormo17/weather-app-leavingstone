@@ -14,7 +14,7 @@ struct TodayViewModel{
     private let temperature: Double
     private let mainDescription: String
     private let cloudiness: Int
-    private let humidity: Double
+    private let humidity: Int
     private let pressure: Int
     private let windSpeed: Int
     private let windDirection: Double
@@ -38,19 +38,21 @@ struct TodayViewModel{
         self.temperature = temperature
         self.mainDescription = mainDescription
         self.cloudiness = Int(cloudiness)
-        self.humidity = humidity
+        self.humidity = Int(humidity)
         self.pressure = pressure
         self.windSpeed = Int(windSpeed)
         self.windDirection = windDirection
     }
     
+    var getIconName: String { return iconName}
+    
     var getCityLabel: String { return city + "," + countryCode }
     
     var getMainDescription: String { return "\(temperature)° | " + mainDescription }
     
-    var getCloudiness: String { return "\(cloudiness) %" }
+    var getCloudiness: String { return "\(cloudiness)%" }
     
-    var getHumidity: String { return "\(humidity)" }
+    var getHumidity: String { return "\(humidity) mm" }
     
     var getPressure: String { return "\(pressure) hPa" }
     
