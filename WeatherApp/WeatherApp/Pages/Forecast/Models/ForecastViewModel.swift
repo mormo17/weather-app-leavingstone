@@ -51,6 +51,6 @@ struct ForecastViewModel{
     
     var getDescription: String { return description }
     
-    var getTemperature: String { return "\(temperature)°C"}
+    var getTemperature: String { return "\(temperature)°"}
     
 }

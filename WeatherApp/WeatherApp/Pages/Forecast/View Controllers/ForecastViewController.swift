@@ -46,7 +46,7 @@ class ForecastViewController: UIViewController{
                         print("SINGLE ITEM")
                         print(item)
                         let viewModel = ForecastViewModelConstructor.construct(from: item)
-                        if self.forecast.last == nil || viewModel.isNewDay{
+                        if self.forecast.last == nil || viewModel.isNewDay {
                             let weekDay = viewModel.getWeekDay
                             let headerModel = ForecastHeaderModel(weekDay: weekDay)
                             let sectionToAdd = ForecastCellModel(headerModel: headerModel, rowModels: [])
@@ -108,6 +108,16 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate{
         return 75
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ForecastHeader.identifier)
+        if let forecastHeader = header as? ForecastHeader{
+            forecastHeader.configure(with: forecast[section].headerModel)
+            forecastHeader.backgroundColor = .clear
+            return forecastHeader
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         cell = tableView.dequeueReusableCell(withIdentifier: ForecastDescription.identifier, for: indexPath)
@@ -117,15 +127,6 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate{
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ForecastHeader.identifier)
-        if let forecastHeader = header as? ForecastHeader{
-            forecastHeader.configure(with: forecast[section].headerModel)
-            return forecastHeader
-        }
-        return nil
     }
 }
 

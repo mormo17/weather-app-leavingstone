@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,44 +23,44 @@
                             <constraint firstAttribute="width" secondItem="CEI-Wj-U7C" secondAttribute="height" id="ZEW-A6-VO0"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EGV-ec-CTh" userLabel="Left Stack View">
-                        <rect key="frame" x="54" y="0.0" width="41.5" height="44"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EGV-ec-CTh" userLabel="Left Stack View">
+                        <rect key="frame" x="54" y="6.5" width="35.5" height="31"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqX-z6-vO5" userLabel="Time">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="23.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="15.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwe-Tc-eqq" userLabel="Description">
-                                <rect key="frame" x="0.0" y="23.5" width="41.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="15.5" width="35.5" height="15.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6HW-Ez-dSQ" userLabel="Right Stack View">
-                        <rect key="frame" x="268.5" y="0.0" width="41.5" height="44"/>
+                        <rect key="frame" x="226" y="6.5" width="84" height="31"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GR-7h-AyC" userLabel="Temperature">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="84" height="31"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="EGV-ec-CTh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6dO-xl-ouP"/>
                     <constraint firstItem="CEI-Wj-U7C" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="Cbd-k0-tSM"/>
                     <constraint firstItem="6HW-Ez-dSQ" firstAttribute="height" secondItem="EGV-ec-CTh" secondAttribute="height" id="JtH-rj-mGi"/>
-                    <constraint firstItem="EGV-ec-CTh" firstAttribute="height" secondItem="CEI-Wj-U7C" secondAttribute="height" id="KZo-Sz-XOc"/>
+                    <constraint firstItem="EGV-ec-CTh" firstAttribute="height" secondItem="CEI-Wj-U7C" secondAttribute="height" multiplier="0.7" id="KZo-Sz-XOc"/>
                     <constraint firstItem="CEI-Wj-U7C" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xmc-BQ-nKR"/>
                     <constraint firstItem="EGV-ec-CTh" firstAttribute="leading" secondItem="CEI-Wj-U7C" secondAttribute="trailing" constant="10" id="iBa-h6-2DQ"/>
                     <constraint firstAttribute="trailing" secondItem="6HW-Ez-dSQ" secondAttribute="trailing" constant="10" id="lhv-hK-gGO"/>
                     <constraint firstItem="6HW-Ez-dSQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qsi-ae-SK9"/>
-                    <constraint firstItem="EGV-ec-CTh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sUs-BZ-4IN"/>
                     <constraint firstItem="CEI-Wj-U7C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uv3-Vt-0X5"/>
                 </constraints>
             </tableViewCellContentView>
@@ -73,4 +74,9 @@
             <point key="canvasLocation" x="94" y="115"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
