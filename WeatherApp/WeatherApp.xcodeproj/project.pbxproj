@@ -15,10 +15,10 @@
 		D1135B3026E400BA003C33FD /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135B2F26E400BA003C33FD /* WeatherAppTests.swift */; };
 		D1135B3B26E400BA003C33FD /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135B3A26E400BA003C33FD /* WeatherAppUITests.swift */; };
 		D1135B6026E41724003C33FD /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135B5F26E41724003C33FD /* ForecastViewController.swift */; };
-		D1F65C7226E4DC340032B142 /* ForecastDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65C7026E4DC340032B142 /* ForecastDescription.swift */; };
-		D1F65C7326E4DC340032B142 /* ForecastDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65C7126E4DC340032B142 /* ForecastDescription.xib */; };
 		D1F65C8226E4DE860032B142 /* ForecastHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65C8026E4DE860032B142 /* ForecastHeader.swift */; };
 		D1F65C8326E4DE860032B142 /* ForecastHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65C8126E4DE860032B142 /* ForecastHeader.xib */; };
+		D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CA026E4EF7F0032B142 /* ForecastDescription.swift */; };
+		D1F65CA326E4EF7F0032B142 /* ForecastDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1F65CA126E4EF7F0032B142 /* ForecastDescription.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +53,10 @@
 		D1135B3A26E400BA003C33FD /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		D1135B3C26E400BA003C33FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1135B5F26E41724003C33FD /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
-		D1F65C7026E4DC340032B142 /* ForecastDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForecastDescription.swift; path = ../ForecastDescription.swift; sourceTree = "<group>"; };
-		D1F65C7126E4DC340032B142 /* ForecastDescription.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ForecastDescription.xib; path = ../ForecastDescription.xib; sourceTree = "<group>"; };
 		D1F65C8026E4DE860032B142 /* ForecastHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastHeader.swift; sourceTree = "<group>"; };
 		D1F65C8126E4DE860032B142 /* ForecastHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastHeader.xib; sourceTree = "<group>"; };
+		D1F65CA026E4EF7F0032B142 /* ForecastDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDescription.swift; sourceTree = "<group>"; };
+		D1F65CA126E4EF7F0032B142 /* ForecastDescription.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastDescription.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +170,8 @@
 		D1135B4F26E40C79003C33FD /* Forecast Description */ = {
 			isa = PBXGroup;
 			children = (
-				D1F65C7026E4DC340032B142 /* ForecastDescription.swift */,
-				D1F65C7126E4DC340032B142 /* ForecastDescription.xib */,
+				D1F65CA026E4EF7F0032B142 /* ForecastDescription.swift */,
+				D1F65CA126E4EF7F0032B142 /* ForecastDescription.xib */,
 			);
 			path = "Forecast Description";
 			sourceTree = "<group>";
@@ -316,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1135B2526E400BA003C33FD /* LaunchScreen.storyboard in Resources */,
-				D1F65C7326E4DC340032B142 /* ForecastDescription.xib in Resources */,
+				D1F65CA326E4EF7F0032B142 /* ForecastDescription.xib in Resources */,
 				D1135B2226E400BA003C33FD /* Assets.xcassets in Resources */,
 				D1135B2026E400B9003C33FD /* Main.storyboard in Resources */,
 				D1F65C8326E4DE860032B142 /* ForecastHeader.xib in Resources */,
@@ -348,7 +348,7 @@
 				D1135B1926E400B9003C33FD /* AppDelegate.swift in Sources */,
 				D1F65C8226E4DE860032B142 /* ForecastHeader.swift in Sources */,
 				D1135B1B26E400B9003C33FD /* SceneDelegate.swift in Sources */,
-				D1F65C7226E4DC340032B142 /* ForecastDescription.swift in Sources */,
+				D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
