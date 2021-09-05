@@ -48,11 +48,20 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("Table view cell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: ForecastDescription.identifier, for: indexPath)
-        
-        if let tableViewCell = cell as? ForecastDescription{
-            
+        var cell = UITableViewCell()
+        if indexPath.row % 5 == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: ForecastHeader.identifier, for: indexPath)
+            if let tableViewCell = cell as? ForecastDescription{
+                
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: ForecastDescription.identifier, for: indexPath)
+            if let tableViewCell = cell as? ForecastDescription{
+                
+            }
         }
+        
+        
         return cell
     }
 }
