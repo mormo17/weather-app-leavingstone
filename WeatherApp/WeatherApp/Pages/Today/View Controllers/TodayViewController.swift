@@ -59,7 +59,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
                     if let city = placemark?.locality{
                         TodayViewController.currentCityLabel = city
                             DispatchQueue.main.async {
-                                self.addCity(city: city.replacingOccurrences(of: " ", with: "%20"))
+                                self.addCity(city: city.replacingOccurrences(of: Constants.SPACE, with: Constants.SPACE_URL_ENCODING))
                             }
                         
                         self.loader.stopAnimating()
@@ -92,7 +92,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func decodeCityWeatherInfo(city: String, completion: @escaping (Result<WeatherData, Error>) -> ()) {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(Constants.apiKey)&units=metric")
         let request = URLRequest(url: url!)
         let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if let data = data{
@@ -109,7 +109,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setUp(){
-        setUpIcon(iconName: todayViewModel?.getIconName ?? "sun")
+        setUpIcon(iconName: todayViewModel?.getIconName ?? Constants.DEFAULT_IMAGE_NAME)
         setUpCityLabel()
         setUpMainDescription()
         setUpCloudiness()
@@ -150,7 +150,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         windDirectionLabel.text = todayViewModel?.getWindDirection
     }
     
-    public static func getCurrentCity() -> String { return currentCity.replacingOccurrences(of: " ", with: "%20") }
+    public static func getCurrentCity() -> String { return currentCity.replacingOccurrences(of: Constants.SPACE, with: Constants.SPACE_URL_ENCODING) }
     
     public static func getCurrentCityLabel() -> String { return currentCityLabel }
     

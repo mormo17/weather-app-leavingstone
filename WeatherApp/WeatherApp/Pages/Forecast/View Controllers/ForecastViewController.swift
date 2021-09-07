@@ -8,19 +8,18 @@
 import UIKit
 
 class ForecastViewController: UIViewController{
-    
+    //MARK: IBOutlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     var forecast = [ForecastCellModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addCity(city: TodayViewController.getCurrentCity())
         setUp()
     }
     
-    func setUp(){
-        initTableView()
-    }
+    func setUp(){ initTableView() }
     
     func initTableView(){
         tableView.isHidden = true
@@ -42,18 +41,17 @@ class ForecastViewController: UIViewController{
             DispatchQueue.main.async {
                 switch result{
                 case .success(let weatherForecast):
-                    for item in weatherForecast.list{
-                        print("SINGLE ITEM")
-                        print(item)
+                    for item in weatherForecast.list {
                         let viewModel = ForecastViewModelConstructor.construct(from: item)
                         if self.forecast.last == nil || viewModel.isNewDay {
-                            let weekDay = viewModel.getWeekDay
+                            var weekDay = ""
+                            self.forecast.last == nil ? (weekDay = Constants.TODAY) : (weekDay = viewModel.getWeekDay)
                             let headerModel = ForecastHeaderModel(weekDay: weekDay)
                             let sectionToAdd = ForecastCellModel(headerModel: headerModel, rowModels: [])
                             self.forecast.append(sectionToAdd)
                         }
                         
-                        self.forecast[self.forecast.count-1].rowModels.append(viewModel)
+                        self.forecast[self.forecast.count - 1].rowModels.append(viewModel)
                     }
                     self.tableView.isHidden = false
                     self.loader.stopAnimating()
@@ -70,10 +68,7 @@ class ForecastViewController: UIViewController{
     }
     
     func decodeCityWeatherInfo(city: String, completion: @escaping (Result<WeatherForecast, Error>) -> ()) {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)&units=metric")!
-        print("URL")
-        print(url)
-        
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(Constants.apiKey)&units=metric")!
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if let data = data{

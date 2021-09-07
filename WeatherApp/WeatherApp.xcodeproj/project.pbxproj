@@ -27,6 +27,7 @@
 		D1F65CF126E5517D0032B142 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CF026E5517D0032B142 /* TodayViewController.swift */; };
 		D1F65CF726E5564D0032B142 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CF626E5564D0032B142 /* TodayViewModel.swift */; };
 		D1F65CFC26E55EE10032B142 /* TodayViewModelConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F65CFB26E55EE10032B142 /* TodayViewModelConstructor.swift */; };
+		D1FCC76226E7923400538EDB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FCC76126E7923400538EDB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D1F65CF026E5517D0032B142 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		D1F65CF626E5564D0032B142 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		D1F65CFB26E55EE10032B142 /* TodayViewModelConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelConstructor.swift; sourceTree = "<group>"; };
+		D1FCC76126E7923400538EDB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 		D1F65CBF26E51F920032B142 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D1FCC76126E7923400538EDB /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				D1F65CF726E5564D0032B142 /* TodayViewModel.swift in Sources */,
 				D1F65CBB26E503500032B142 /* ForecastViewModelConstructor.swift in Sources */,
 				D1F65CA226E4EF7F0032B142 /* ForecastDescription.swift in Sources */,
+				D1FCC76226E7923400538EDB /* Constants.swift in Sources */,
 				D1F65CFC26E55EE10032B142 /* TodayViewModelConstructor.swift in Sources */,
 				D1F65CF126E5517D0032B142 /* TodayViewController.swift in Sources */,
 			);

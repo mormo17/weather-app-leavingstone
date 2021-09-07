@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-let apiKey = "6a463f616a7571d98cd2bed1c28af128"
-
 struct Weather: Codable{
     let main: String
     let description: String
