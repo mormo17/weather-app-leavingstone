@@ -11,7 +11,7 @@ struct TodayViewModel{
     private let city: String
     private let countryCode: String
     private let iconName: String
-    private let temperature: Double
+    private let temperature: Int
     private let mainDescription: String
     private let cloudiness: Int
     private let humidity: Int
@@ -35,7 +35,7 @@ struct TodayViewModel{
         self.city = city
         self.countryCode = countryCode
         self.iconName = iconName
-        self.temperature = temperature
+        self.temperature = Int(temperature)
         self.mainDescription = mainDescription
         self.cloudiness = Int(cloudiness)
         self.humidity = Int(humidity)
@@ -45,6 +45,8 @@ struct TodayViewModel{
     }
     
     var getIconName: String { return iconName}
+    
+    var getCity: String { return city}
     
     var getCityLabel: String { return city + ", " + countryCode }
     
@@ -60,7 +62,9 @@ struct TodayViewModel{
     
     var getWindDirection: String { return convertWindDegToWindDir(windDeg: windDirection) }
     
-    func convertWindDegToWindDir(windDeg: Double) -> String{
+    var getShareText: String { return mainDescription + ", " + getCityLabel + " by WeatherApp"} 
+    
+    private func convertWindDegToWindDir(windDeg: Double) -> String{
         let windDirections = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"]
         let dir = windDeg/22.5 + 1
         var res = ""

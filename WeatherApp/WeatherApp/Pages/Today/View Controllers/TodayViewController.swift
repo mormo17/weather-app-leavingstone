@@ -21,6 +21,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     private var todayViewModel: TodayViewModel? = nil
+    private static var currentCityLabel = ""
     private static var currentCity = ""
     
     var locationManager = CLLocationManager()
@@ -37,31 +38,27 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setUpLocation(){
-        if (!TodayViewController.currentCity.isEmpty){
-            print("uechveli")
-            return
-        }
-        print("aqac?")
+        if (!TodayViewController.currentCityLabel.isEmpty){ return }
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     
+    @IBAction func sharePressed(_ sender: Any) {
+        let weatherDesc = todayViewModel?.getShareText
+        let activityVC = UIActivityViewController(activityItems: [weatherDesc as Any], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("AQ")
-        if !locations.isEmpty, TodayViewController.currentCity == "" {
+        if !locations.isEmpty, TodayViewController.currentCityLabel == "" {
                 let geoCoder = CLGeocoder()
                 geoCoder.reverseGeocodeLocation(locations.first!, completionHandler: { (placemarks, error) -> Void in
                     let placemark = placemarks?[0]
                     if let city = placemark?.locality{
-                        TodayViewController.currentCity = city
-                        print("-- Local City")
-//                        print(self.currentCity)
-                        print(city)
-                        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
-                        print("http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
+                        TodayViewController.currentCityLabel = city
                             DispatchQueue.main.async {
-                                print("check\(TodayViewController.currentCity)")
                                 self.addCity(city: city.replacingOccurrences(of: " ", with: "%20"))
                             }
                         
@@ -81,8 +78,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 switch result{
                 case .success(let weatherData):
-                    print("-- City Added: \(weatherData.name)")
-                    print(weatherData)
                     self.todayViewModel = TodayViewModelConstructor.construct(from: weatherData)
                     self.setUp()
                     self.loader.stopAnimating()
@@ -98,7 +93,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     func decodeCityWeatherInfo(city: String, completion: @escaping (Result<WeatherData, Error>) -> ()) {
         let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric")
-//        print("url\(url)")
         let request = URLRequest(url: url!)
         let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if let data = data{
@@ -126,8 +120,9 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setUpCityLabel(){
-        TodayViewController.currentCity = todayViewModel!.getCityLabel
-        cityLabel.text = TodayViewController.currentCity
+        TodayViewController.currentCity = todayViewModel!.getCity
+        TodayViewController.currentCityLabel = todayViewModel!.getCityLabel
+        cityLabel.text = TodayViewController.currentCityLabel
          
     }
     
@@ -155,7 +150,9 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         windDirectionLabel.text = todayViewModel?.getWindDirection
     }
     
-    public static func getCurrentCity() -> String { print("---\(currentCity)"); return currentCity }
+    public static func getCurrentCity() -> String { return currentCity.replacingOccurrences(of: " ", with: "%20") }
+    
+    public static func getCurrentCityLabel() -> String { return currentCityLabel }
     
     private func setUpIcon(iconName: String){
         let url = URL(string: "https://openweathermap.org/img/wn/\(iconName)@2x.png")
@@ -167,11 +164,8 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func downloadImage(from url: URL) {
-        print("Download Started")
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
             // always update the UI from the main thread
             DispatchQueue.main.async() { [weak self] in
                 self?.weatherIcon.image = UIImage(data: data)

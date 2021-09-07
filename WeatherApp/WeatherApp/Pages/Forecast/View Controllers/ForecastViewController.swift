@@ -14,7 +14,7 @@ class ForecastViewController: UIViewController{
     var forecast = [ForecastCellModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCity(city: "Tbilisi")
+        addCity(city: TodayViewController.getCurrentCity())
         setUp()
     }
     
@@ -36,6 +36,7 @@ class ForecastViewController: UIViewController{
         tableView.register(ForecastDescription.nib(), forCellReuseIdentifier: ForecastDescription.identifier)
     }
     
+
     func addCity(city: String){
         decodeCityWeatherInfo(city: city) { result in
             DispatchQueue.main.async {
@@ -57,7 +58,7 @@ class ForecastViewController: UIViewController{
                     self.tableView.isHidden = false
                     self.loader.stopAnimating()
                     self.loader.isHidden = true
-                    self.navigationItem.title = TodayViewController.getCurrentCity()
+                    self.navigationItem.title = TodayViewController.getCurrentCityLabel()
                     self.tableView.reloadData()
                     
                 
